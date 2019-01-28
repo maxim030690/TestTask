@@ -62,7 +62,12 @@ class SendMail extends Command
                 die;
             }
 
-            (UsersExport::$numberRows > 300) ? SendQueuesEmail::dispatch($this->email, $this->fileName) : $this->attachmentEmail();
+            if(UsersExport::$numberRows > 300){
+                SendQueuesEmail::dispatch($this->email, $this->fileName);
+                $this->output->write("File will be sent soon", true);
+            }else{
+                $this->attachmentEmail();
+            }
 
         }else{
             $this->output->write("Email not correct", true);

@@ -40,7 +40,5 @@ class SendQueuesEmail implements ShouldQueue
             $message->subject('Report data!');
             $message->attach(storage_path('app/'.$this->fileName));
         });
-        echo 'File will be sent soon';
-        die;
     }
 }
